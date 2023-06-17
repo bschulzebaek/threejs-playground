@@ -30,11 +30,12 @@ export default function PageMenu() {
 
     return (
         <>
-            <FontAwesomeIcon
-                className={styles.pageMenuToggle}
-                icon={visible ? faTimes : faBars}
-                onClick={() => setVisibleState(!visible)}
-            />
+            <div className={styles.pageMenuToggle}>
+                <FontAwesomeIcon
+                    icon={visible ? faTimes : faBars}
+                    onClick={() => setVisibleState(!visible)}
+                />
+            </div>
 
             <div className={classNames.join(' ')}>
                 <div className={styles.pageMenuBackdrop}></div>
