@@ -19,6 +19,7 @@ export default class Loop {
         }
 
         this.paused = false;
+
         // @ts-ignore
         globalThis.__loop = requestAnimationFrame((newTime) => this.loop(0, 0));
     }
@@ -40,9 +41,10 @@ export default class Loop {
             return;
         }
 
-        this.innerLoop(time);
         // @ts-ignore
         globalThis.__loop = requestAnimationFrame((newTime) => this.loop(newTime, time));
+
+        this.innerLoop(time);
     }
 
     private innerLoop = (time: number) => {

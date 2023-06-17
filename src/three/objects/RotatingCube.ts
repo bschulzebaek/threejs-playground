@@ -1,4 +1,4 @@
-import { BoxGeometry, Mesh, MeshNormalMaterial } from 'three';
+import { BoxGeometry, DoubleSide, Mesh, MeshNormalMaterial, MeshStandardMaterial } from 'three';
 import SceneObject from '@/three/objects/SceneObject.interface';
 
 export default class RotatingCube implements SceneObject {
@@ -7,10 +7,15 @@ export default class RotatingCube implements SceneObject {
 
     constructor(width: number, height: number, depth: number) {
         this.geometry = new BoxGeometry(width, height, depth);
-        this.mesh = new Mesh(this.geometry, new MeshNormalMaterial());
+        this.mesh = new Mesh(this.geometry, new MeshStandardMaterial( {
+            color: 0xffffff,
+            opacity: 1.0,
+            side: DoubleSide,
+            transparent: false,
+        }));
     }
 
-    public getMesh(): Mesh<BoxGeometry, MeshNormalMaterial> {
+    public getObject(): Mesh<BoxGeometry, MeshNormalMaterial> {
         return this.mesh;
     }
 

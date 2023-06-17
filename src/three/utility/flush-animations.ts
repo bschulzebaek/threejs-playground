@@ -6,4 +6,10 @@
 export default function flushAnimations() {
     // @ts-ignore
     cancelAnimationFrame(globalThis.__loop);
+
+    // @ts-ignore
+    delete globalThis.__renderContext;
+
+    // @ts-ignore
+    delete globalThis.__sceneContext;
 }

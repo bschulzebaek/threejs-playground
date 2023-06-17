@@ -1,13 +1,14 @@
-import { Scene } from 'three';
+import { Mesh, Scene } from 'three';
 import SceneObject from '@/three/objects/SceneObject.interface';
 
 export default class SceneContext {
-    private objects: SceneObject[] = [];
+    private dynamicObjects: SceneObject[] = [];
 
     constructor(
         private readonly scene: Scene
     ) {
-
+        // @ts-ignore
+        globalThis.__sceneContext = this;
     }
 
     public getScene(): Scene {
@@ -15,11 +16,14 @@ export default class SceneContext {
     }
 
     public iterateObjects(callback: (object: SceneObject) => void): void {
-        this.objects.forEach(callback);
+        this.dynamicObjects.forEach(callback);
     }
 
-    public addObject(object: SceneObject): void {
-        this.objects.push(object);
-        this.scene.add(object.getMesh());
+    public addDynamicObject(object: SceneObject): void {
+        this.dynamicObjects.push(object);
+
+        if (object.getObject) {
+            this.scene.add(object.getObject());
+        }
     }
 }

@@ -1,8 +1,7 @@
 import SceneContext from '@/three/core/SceneContext';
 import { Camera, WebGLRenderer } from 'three';
-import createRenderer from '@/three/utility/create-renderer';
-import createCamera from '@/three/utility/create-camera';
 import Loop from '@/three/core/Loop';
+import SceneDescriptor from '@/three/core/SceneDescriptor';
 
 export default class RenderContext {
     private readonly renderer: WebGLRenderer;
@@ -13,8 +12,13 @@ export default class RenderContext {
 
     constructor(
         private readonly canvas: HTMLCanvasElement,
+        descriptor: typeof SceneDescriptor,
     ) {
-        this.renderer = createRenderer(canvas);
+        this.renderer = descriptor.getRenderer(canvas);
+        this.setCamera(descriptor.getCamera(canvas));
+
+        // @ts-ignore
+        globalThis.__renderContext = this;
     }
 
     public getCanvas(): HTMLCanvasElement {
