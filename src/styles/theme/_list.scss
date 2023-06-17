@@ -1,0 +1,12 @@
+ul {
+    $li-bullet-width: 12px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        position: relative;
+        margin: 0.8rem 0;
+    }
+}

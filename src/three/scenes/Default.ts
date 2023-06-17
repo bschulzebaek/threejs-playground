@@ -5,7 +5,7 @@ import SceneDescriptor from '@/three/core/SceneDescriptor';
 import RenderContext from '@/three/core/RenderContext';
 import OrbitingSphere from '@/three/objects/OrbitingSphere';
 
-export default class Simple extends SceneDescriptor {
+export default class Default extends SceneDescriptor {
     static getRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
@@ -19,11 +19,7 @@ export default class Simple extends SceneDescriptor {
     }
 
     static getCamera(canvas: HTMLCanvasElement): THREE.Camera {
-        const camera = new THREE.PerspectiveCamera(
-            90,
-            canvas.clientWidth / canvas.clientHeight,
-            1,
-        );
+        const camera = new THREE.PerspectiveCamera(90);
         camera.position.set(250, 300, 500);
         return camera;
     }
@@ -34,7 +30,6 @@ export default class Simple extends SceneDescriptor {
 
         scene.background = new THREE.Color(0xcccccc);
         scene.fog = new THREE.FogExp2(0xcccccc, 0.001);
-        scene.add(new THREE.AxesHelper(500));
 
         const controls = new OrbitControls(renderContext.getCamera(), renderContext.getRenderer().domElement);
         controls.enableDamping = true;
@@ -51,7 +46,7 @@ export default class Simple extends SceneDescriptor {
 
         context.addDynamicObject(new OrbitingSphere(
             15,
-            new THREE.Vector3(-250, 100, 50),
+            new THREE.Vector3(-250, 500, 50),
             new THREE.Vector3(-50, 0, 0),
             new THREE.Vector3(0, 0.01, 0),
             new THREE.PointLight(0xff00000, 1, 500, 2),
@@ -59,7 +54,7 @@ export default class Simple extends SceneDescriptor {
 
         context.addDynamicObject(new OrbitingSphere(
            10,
-            new THREE.Vector3(250, 60, -50),
+            new THREE.Vector3(250, -200, -250),
             new THREE.Vector3(50, 0, 50),
             new THREE.Vector3(0, 0.005, 0),
             new THREE.PointLight(0x0000ff, 1, 500, 1),
@@ -67,7 +62,7 @@ export default class Simple extends SceneDescriptor {
 
         context.addDynamicObject(new OrbitingSphere(
            10,
-            new THREE.Vector3(0, 60, 500),
+            new THREE.Vector3(0, 0, 500),
             new THREE.Vector3(10, 0, 10),
             new THREE.Vector3(0, 0.005, 0),
             new THREE.PointLight(0x00ffff, 1, 500, 2),

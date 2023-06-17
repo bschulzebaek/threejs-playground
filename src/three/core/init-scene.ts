@@ -5,9 +5,9 @@ import SceneDescriptor from '@/three/core/SceneDescriptor';
 import setResizeListener from '@/three/utility/resize-listener';
 import setPageVisibilityListener from '@/three/utility/page-visibility-listener';
 
-const DEFAULT_SCENE = 'Simple';
+const DEFAULT_SCENE = 'Default';
 const VALID_SCENES = [
-    'Simple',
+    'Default',
     'GlbSimple',
 ];
 

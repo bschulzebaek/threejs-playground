@@ -1,0 +1,16 @@
+a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+
+    &:visited {
+        color: unset;
+    }
+
+    &:active,
+    &:focus,
+    &:hover,
+    &.active {
+        text-decoration: underline;
+    }
+}

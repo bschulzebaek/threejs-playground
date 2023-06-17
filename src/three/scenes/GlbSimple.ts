@@ -19,12 +19,8 @@ export default class GlbSimple implements SceneDescriptor {
     }
 
     static getCamera(canvas: HTMLCanvasElement): THREE.Camera {
-        const camera = new THREE.PerspectiveCamera(
-            90,
-            canvas.clientWidth / canvas.clientHeight,
-            1,
-        );
-        camera.position.set(-150, 100, 150);
+        const camera = new THREE.PerspectiveCamera(90, 1);
+        camera.position.set(250, 100, 200);
         return camera;
     }
 
@@ -33,13 +29,12 @@ export default class GlbSimple implements SceneDescriptor {
         const context = new SceneContext(scene);
 
         scene.background = new THREE.Color(0x87ceeb);
-        scene.fog = new THREE.FogExp2(0xcccccc, 0.002);
+        scene.fog = new THREE.FogExp2(0xcccccc, 0.001);
         const controls = new OrbitControls(renderContext.getCamera(), renderContext.getRenderer().domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.screenSpacePanning = false;
         controls.minDistance = 0;
-        controls.maxDistance = 5000;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.3;
         controls.maxPolarAngle = Math.PI / 2;
