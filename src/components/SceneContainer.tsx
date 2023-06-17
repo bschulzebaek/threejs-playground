@@ -10,7 +10,7 @@ export default function SceneContainer() {
     const sceneName = useSearchParams().get('scene') ?? DEFAULT_SCENE;
 
     useEffect(() => {
-        initScene(canvasRef.current as HTMLCanvasElement, sceneName);
+        initScene(canvasRef.current as HTMLCanvasElement, sceneName, true);
     });
 
     return (
