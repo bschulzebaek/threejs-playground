@@ -4,8 +4,6 @@ import RenderContext from '@/three/core/RenderContext';
 import SceneContext from '@/three/core/SceneContext';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { Texture } from 'three';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 
 export default class GlbScene implements SceneDescriptor {
     static getRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
@@ -45,7 +43,6 @@ export default class GlbScene implements SceneDescriptor {
         controls.autoRotateSpeed = 0.3;
         controls.maxPolarAngle = Math.PI / 2;
         context.addDynamicObject(controls);
-
 
         const textureLoader = new THREE.TextureLoader();
         const gltfLoader = new GLTFLoader().setPath('/assets/aston_martin_valkyrie/');

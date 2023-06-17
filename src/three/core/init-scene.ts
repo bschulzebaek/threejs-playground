@@ -10,6 +10,7 @@ const VALID_SCENES = [
     'Default',
     'GlbScene',
     'GltfScene',
+    'Animated'
 ];
 
 

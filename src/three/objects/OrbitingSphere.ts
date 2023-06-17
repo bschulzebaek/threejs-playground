@@ -47,7 +47,7 @@ export default class OrbitingSphere implements SceneObject {
         return this.pivot;
     }
 
-    public update(time: number) {
+    public update(delta: number) {
         this.pivot.rotateX(this.rotation.x);
         this.pivot.rotateY(this.rotation.y);
         this.pivot.rotateZ(this.rotation.z);

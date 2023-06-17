@@ -73,6 +73,16 @@ export default function PageMenu() {
                                 glTF Scene
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                tabIndex={2}
+                                href="/?scene=Animated"
+                                className={ scene === 'Animated' ? 'active' : '' }
+                                onClick={() => setVisibleState(false)}
+                            >
+                                Animated
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 

@@ -44,12 +44,12 @@ export default class Loop {
         // @ts-ignore
         globalThis.__loop = requestAnimationFrame((newTime) => this.loop(newTime, time));
 
-        this.innerLoop(time);
+        this.innerLoop(this.getDelta(time, lastTime));
     }
 
-    private innerLoop = (time: number) => {
+    private innerLoop = (delta: number) => {
         this.sceneContext.iterateObjects((object) => {
-            object.update(time);
+            object.update(delta);
         });
 
         this.renderer.render(this.scene, this.camera);

@@ -19,8 +19,8 @@ export default class RotatingCube implements SceneObject {
         return this.mesh;
     }
 
-    public update(time: number) {
-        this.mesh.rotation.x = time / 2000;
-        this.mesh.rotation.y = time / 1000;
+    public update(delta: number) {
+        this.mesh.rotation.x = delta / 2;
+        this.mesh.rotation.y = delta;
     }
 }
