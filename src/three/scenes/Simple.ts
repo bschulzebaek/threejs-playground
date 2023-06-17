@@ -1,8 +1,8 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import SceneContext from '@/three/core/SceneContext';
 import SceneDescriptor from '@/three/core/SceneDescriptor';
 import RenderContext from '@/three/core/RenderContext';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import OrbitingSphere from '@/three/objects/OrbitingSphere';
 
 export default class Simple extends SceneDescriptor {
@@ -28,17 +28,13 @@ export default class Simple extends SceneDescriptor {
         return camera;
     }
 
-    static getSceneContext(renderContext: RenderContext): SceneContext {
+    static async getSceneContext(renderContext: RenderContext): Promise<SceneContext> {
         const scene = new THREE.Scene();
         const context = new SceneContext(scene);
-        renderContext.setSceneContext(context);
 
         scene.background = new THREE.Color(0xcccccc);
         scene.fog = new THREE.FogExp2(0xcccccc, 0.001);
-
-        const axis = new THREE.AxesHelper(500);
-        axis.position.setY(0);
-        scene.add(axis);
+        scene.add(new THREE.AxesHelper(500));
 
         const controls = new OrbitControls(renderContext.getCamera(), renderContext.getRenderer().domElement);
         controls.enableDamping = true;

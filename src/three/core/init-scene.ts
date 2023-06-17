@@ -8,15 +8,16 @@ import setPageVisibilityListener from '@/three/utility/page-visibility-listener'
 const DEFAULT_SCENE = 'Simple';
 const VALID_SCENES = [
     'Simple',
+    'GlbSimple',
 ];
 
 
-function _initScene(canvas: HTMLCanvasElement, descriptor: typeof SceneDescriptor): Loop {
+async function _initScene(canvas: HTMLCanvasElement, descriptor: typeof SceneDescriptor): Promise<Loop> {
     const renderContext = new RenderContext(canvas, descriptor);
-    const sceneContext = descriptor.getSceneContext(renderContext);
+    const sceneContext = await descriptor.getSceneContext(renderContext);
+    renderContext.setSceneContext(sceneContext);
 
     const loop = new Loop(sceneContext, renderContext.getCamera(), renderContext.getRenderer());
-
     renderContext.setLoop(loop);
 
     setResizeListener(renderContext);
@@ -33,7 +34,7 @@ async function initScene(canvas: HTMLCanvasElement, sceneName: string, immediate
     }
 
     const descriptor: typeof SceneDescriptor = (await import(`../scenes/${sceneName}.ts`)).default;
-    const loop = _initScene(canvas, descriptor);
+    const loop = await _initScene(canvas, descriptor);
 
     if (immediate) {
         loop.start();

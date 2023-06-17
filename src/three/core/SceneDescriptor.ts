@@ -11,7 +11,7 @@ export default class SceneDescriptor {
         throw new Error('Not implemented!');
     }
 
-    static getSceneContext(renderContext: RenderContext): SceneContext {
+    static async getSceneContext(renderContext: RenderContext): Promise<SceneContext> {
         throw new Error('Not implemented!');
     }
 }
