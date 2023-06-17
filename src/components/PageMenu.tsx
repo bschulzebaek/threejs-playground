@@ -55,11 +55,21 @@ export default function PageMenu() {
                         <li>
                             <Link
                                 tabIndex={2}
-                                href="/?scene=GlbSimple"
-                                className={ scene === 'GlbSimple' ? 'active' : '' }
+                                href="/?scene=GlbScene"
+                                className={ scene === 'GlbScene' ? 'active' : '' }
                                 onClick={() => setVisibleState(false)}
                             >
-                                GLB Loader
+                                glb Scene(s)
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                tabIndex={2}
+                                href="/?scene=GltfScene"
+                                className={ scene === 'GltfScene' ? 'active' : '' }
+                                onClick={() => setVisibleState(false)}
+                            >
+                                glTF Scene
                             </Link>
                         </li>
                     </ul>

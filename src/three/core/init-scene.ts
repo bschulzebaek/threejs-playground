@@ -8,7 +8,8 @@ import setPageVisibilityListener from '@/three/utility/page-visibility-listener'
 const DEFAULT_SCENE = 'Default';
 const VALID_SCENES = [
     'Default',
-    'GlbSimple',
+    'GlbScene',
+    'GltfScene',
 ];
 
 
