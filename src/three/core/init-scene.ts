@@ -6,11 +6,11 @@ import setResizeListener from '@/three/utility/resize-listener';
 import setPageVisibilityListener from '@/three/utility/page-visibility-listener';
 
 const DEFAULT_SCENE = 'Default';
-const VALID_SCENES = [
+export const VALID_SCENES = [
     'Default',
-    'GlbScene',
-    'GltfScene',
-    'Animated'
+    'GlbModel',
+    'GltfModel',
+    'GltfScene'
 ];
 
 

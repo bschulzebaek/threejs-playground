@@ -4,12 +4,12 @@
     position: absolute;
     cursor: pointer;
     padding: 0.25rem;
-    width: 2rem;
     height: 2rem;
+    display: block;
 
     > svg {
-        width: 100%;
-        height: 100%;
+        width: 2rem;
+        height: 2rem;
         filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.7));
     }
 }

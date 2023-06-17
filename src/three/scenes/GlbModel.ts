@@ -5,7 +5,7 @@ import SceneContext from '@/three/core/SceneContext';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-export default class GlbScene implements SceneDescriptor {
+export default class GlbModel implements SceneDescriptor {
     static getRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
         const renderer = new THREE.WebGLRenderer({
             antialias: true,

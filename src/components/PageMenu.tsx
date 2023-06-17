@@ -6,6 +6,15 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+import { VALID_SCENES } from '@/three/core/init-scene';
+
+const SCENE_NAMES: { [key: string]: string } = {
+    'Default': 'Default',
+    'GlbModel': 'glb Model',
+    'GltfModel': 'glTF Model',
+    'GltfScene': 'glTF Scene',
+};
+
 export default function PageMenu() {
     const [visible, setVisibleState] = useState(false);
     const scene = useSearchParams().get('scene') ?? 'Default';
@@ -28,13 +37,29 @@ export default function PageMenu() {
         return () => window.removeEventListener('keydown', keyboardListener);
     });
 
+    const listItems = VALID_SCENES.map((sceneName) => {
+        return (
+            <li key={sceneName}>
+                <Link
+                    tabIndex={1}
+                    href={`/?scene=${sceneName}`}
+                    className={ scene === sceneName ? 'active' : '' }
+                    onClick={() => setVisibleState(false)}
+                >
+                    { SCENE_NAMES[sceneName] ?? sceneName }
+                </Link>
+            </li>
+        );
+    });
+
     return (
         <>
-            <div className={styles.pageMenuToggle}>
-                <FontAwesomeIcon
-                    icon={visible ? faTimes : faBars}
-                    onClick={() => setVisibleState(!visible)}
-                />
+            <div
+                className={styles.pageMenuToggle}
+                onClick={() => setVisibleState(!visible)}
+            >
+                <FontAwesomeIcon icon={visible ? faTimes : faBars} />
+                { visible ? '(ESC)' : null }
             </div>
 
             <div className={classNames.join(' ')}>
@@ -42,48 +67,7 @@ export default function PageMenu() {
 
                 <div className={styles.pageMenuBody}>
                     <h2>Scene Selection</h2>
-                    <ul>
-                        <li>
-                            <Link
-                                tabIndex={1}
-                                href="/"
-                                className={ scene === 'Default' ? 'active' : '' }
-                                onClick={() => setVisibleState(false)}
-                            >
-                                Default
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                tabIndex={2}
-                                href="/?scene=GlbScene"
-                                className={ scene === 'GlbScene' ? 'active' : '' }
-                                onClick={() => setVisibleState(false)}
-                            >
-                                glb Scene(s)
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                tabIndex={2}
-                                href="/?scene=GltfScene"
-                                className={ scene === 'GltfScene' ? 'active' : '' }
-                                onClick={() => setVisibleState(false)}
-                            >
-                                glTF Scene
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                tabIndex={2}
-                                href="/?scene=Animated"
-                                className={ scene === 'Animated' ? 'active' : '' }
-                                onClick={() => setVisibleState(false)}
-                            >
-                                Animated
-                            </Link>
-                        </li>
-                    </ul>
+                    <ul>{listItems}</ul>
                 </div>
 
 
