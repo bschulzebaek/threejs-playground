@@ -1,0 +1,19 @@
+.sceneContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .sceneFps {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+    }
+}
