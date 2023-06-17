@@ -1,3 +1,14 @@
+.pageMenuToggle {
+    z-index: 2;
+    pointer-events: all;
+    position: absolute;
+    cursor: pointer;
+    padding: 0.25rem;
+    width: 2rem;
+    height: 2rem;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, .3));
+}
+
 .pageMenu {
     position: fixed;
     z-index: 1;
@@ -6,32 +17,14 @@
     bottom: 0;
     right: 0;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity ease .3s;
 
     &.pageMenuActive {
         pointer-events: all;
-
-        .pageMenuBackdrop,
-        .pageMenuBody {
-            opacity: 1;
-        }
+        opacity: 1;
     }
 
-    .pageMenuToggle {
-        z-index: 2;
-        pointer-events: all;
-        position: absolute;
-        cursor: pointer;
-        padding: 0.25rem;
-        width: 2rem;
-        height: 2rem;
-        filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, .3));
-    }
-
-    .pageMenuBackdrop,
-    .pageMenuBody {
-        opacity: 0;
-        transition: opacity ease .3s;
-    }
 
     .pageMenuBackdrop {
         background: rgba(0, 0, 0, .3);
@@ -44,5 +37,21 @@
         top: 20%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .pageMenuFooter {
+        position: absolute;
+        bottom: 0;
+        background: #fff;
+        height: 3rem;
+        width: 100%;
+        text-align: center;
+
+        > a {
+            display: inline-block;
+            padding: 0.5rem;
+            height: 100%;
+            width: 2rem;
+        }
     }
 }

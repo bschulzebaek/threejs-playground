@@ -7,10 +7,15 @@ a {
         color: unset;
     }
 
+    &:focus-visible,
     &:active,
     &:focus,
     &:hover,
     &.active {
         text-decoration: underline;
+    }
+
+    &:focus-visible {
+        outline: 1px solid #fff;
     }
 }
