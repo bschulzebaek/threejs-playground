@@ -19,7 +19,11 @@ export default class Default extends SceneDescriptor {
     }
 
     static getCamera(canvas: HTMLCanvasElement): THREE.Camera {
-        const camera = new THREE.PerspectiveCamera(90);
+        const camera = new THREE.PerspectiveCamera(
+            90,
+            canvas.clientWidth / canvas.clientHeight,
+            1,
+        );
         camera.position.set(250, 300, 500);
         return camera;
     }

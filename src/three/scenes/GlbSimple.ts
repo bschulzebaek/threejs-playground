@@ -19,7 +19,11 @@ export default class GlbSimple implements SceneDescriptor {
     }
 
     static getCamera(canvas: HTMLCanvasElement): THREE.Camera {
-        const camera = new THREE.PerspectiveCamera(90, 1);
+        const camera = new THREE.PerspectiveCamera(
+            90,
+            canvas.clientWidth / canvas.clientHeight,
+            1,
+        );
         camera.position.set(250, 100, 200);
         return camera;
     }

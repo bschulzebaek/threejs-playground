@@ -10,7 +10,7 @@ export default function setResizeListener(renderContext: RenderContext) {
         canvas.style.height = `${canvas.parentElement!.clientHeight}px`;
 
         renderContext.getRenderer().setSize(canvas.clientWidth, canvas.clientHeight);
-        camera.aspect = 1;
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
         camera.updateMatrix();
     });
 }
