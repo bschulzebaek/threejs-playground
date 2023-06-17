@@ -15,6 +15,7 @@ export default class Animated implements SceneDescriptor {
 
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.shadowMap.enabled = true
 
         return renderer;
     }
@@ -26,7 +27,7 @@ export default class Animated implements SceneDescriptor {
             0.1,
             10000,
         );
-        camera.position.set(-30, 30, -40);
+        camera.position.set(-10, 15, 35);
         return camera;
     }
 
@@ -53,47 +54,33 @@ export default class Animated implements SceneDescriptor {
         action.play();
         context.addDynamicObject(mixer);
 
-        const redSign = new THREE.RectAreaLight(0x7d0033, 1, 7, 7);
-        redSign.rotateY(-0.8);
+        const redSign = new THREE.PointLight(0x7d0033, 1, 20, 3)
+        redSign.castShadow = true;
         redSign.position.set(-10.5, 5, 3.5);
 
-        const blueLamp1 = new THREE.RectAreaLight(0x00fffd, 0.5, 0.2, 10);
-        blueLamp1.position.set(0, 22, -0.5);
+        const blueLamp1 = new THREE.PointLight(0x00fffd, 0.3, 50, 4);
+        blueLamp1.castShadow = true;
+        blueLamp1.position.set(3, 18, 2);
 
-        const blueLamp2 = new THREE.RectAreaLight(0x00fffd, 0.5, 0.2, 10);
-        blueLamp2.position.set(4.5, 19, -0.5);
+        const blueLamp2 = new THREE.PointLight(0x00fffd, 0.7, 80, 4);
+        blueLamp2.castShadow = true;
+        blueLamp2.position.set(1.5, 20, -3);
 
-        const blueLamp3 = new THREE.RectAreaLight(0x00fffd, 0.5, 0.2, 10);
-        blueLamp3.position.set(3, 12, 0.5);
+        const blueLamp3 = new THREE.PointLight(0x00fffd, 0.4, 65, 4);
+        blueLamp3.castShadow = true;
+        blueLamp3.position.set(2.6, 12, -3.6);
 
-        const blueLamp4 = new THREE.RectAreaLight(0x00fffd, 0.5, 2, 3);
-        blueLamp4.rotateY(-0.8);
-        blueLamp4.position.set(-10.5, 3, 3.5);
-
-        const blueLamp5 = new THREE.RectAreaLight(0x00fffd, 0.5, 0.2, 10);
-        blueLamp5.position.set(-2, 18, -3.5);
-
-        const blueLamp6 = new THREE.RectAreaLight(0x00fffd, 0.8, 2, 20);
-        blueLamp6.position.set(1.5, 15, -2.5);
-
-        const blueLamp7 = new THREE.RectAreaLight(0x00fffd, 0.5, 0.2, 10);
-        blueLamp7.position.set(4, 20, -5.8);
-
-        const blueLamp8 = new THREE.RectAreaLight(0x00fffd, 0.5, 2, 3);
-        blueLamp8.lookAt(0, 2, 0);
-        blueLamp8.position.set(5.7, 2, -14.3);
-
-        const blueLamp9 = new THREE.RectAreaLight(0x00fffd, 0.5, 2, 3);
-        blueLamp9.lookAt(0, 2, 0);
-        blueLamp9.position.set(16.5, 1, 9);
-
-        RectAreaLightUniformsLib.init();
+        gltf.scene.traverse((node) => {
+            node.castShadow = true;
+            node.receiveShadow = true;
+        });
 
         scene.add(
             gltf.scene,
             redSign,
-            blueLamp1, blueLamp2, blueLamp3, blueLamp4, blueLamp5,
-            blueLamp6, blueLamp7, blueLamp8, blueLamp9,
+            blueLamp1,
+            blueLamp2,
+            blueLamp3,
         );
 
         return context;
