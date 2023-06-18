@@ -1,5 +1,5 @@
 .pageMenuToggle {
-    z-index: 2;
+    z-index: 3;
     pointer-events: all;
     position: absolute;
     cursor: pointer;
@@ -16,7 +16,7 @@
 
 .pageMenu {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     bottom: 0;

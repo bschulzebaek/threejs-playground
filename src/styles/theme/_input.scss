@@ -1,0 +1,32 @@
+input {
+    background: #fff;
+    border: none;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border-radius: 1px;
+    transition: box-shadow .2s ease;
+    box-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+    display: block;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+
+    &:focus,
+    &:hover {
+        box-shadow: 2px 2px 8px rgb(0 0 0 / 50%);
+    }
+
+    &[type="checkbox"] {
+        outline: none;
+        height: 1rem;
+        width: 1rem;
+
+        &:focus,
+        &:hover {
+            box-shadow: none;
+        }
+    }
+}

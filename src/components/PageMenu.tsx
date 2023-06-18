@@ -4,20 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
-import { VALID_SCENES } from '@/three/core/init-scene';
-
-const SCENE_NAMES: { [key: string]: string } = {
-    'Default': 'Default',
-    'GlbModel': 'glb Model',
-    'GltfModel': 'glTF Model',
-    'GltfScene': 'glTF Scene',
+const SCENES: { [pathname: string]: string } = {
+    '/': 'Low Poly Birds',
+    '/car-showroom': 'Car Showroom',
+    '/polar-station': 'Polar Station',
+    '/fantasy': 'Fantasy',
 };
+
 
 export default function PageMenu() {
     const [visible, setVisibleState] = useState(false);
-    const scene = useSearchParams().get('scene') ?? 'Default';
+    const currentPath = usePathname();
 
     let classNames = [styles.pageMenu];
 
@@ -37,16 +36,16 @@ export default function PageMenu() {
         return () => window.removeEventListener('keydown', keyboardListener);
     });
 
-    const listItems = VALID_SCENES.map((sceneName) => {
+    const listItems = Object.entries(SCENES).map(([path, name]) => {
         return (
-            <li key={sceneName}>
+            <li key={path}>
                 <Link
                     tabIndex={1}
-                    href={`/?scene=${sceneName}`}
-                    className={ scene === sceneName ? 'active' : '' }
+                    href={path}
+                    className={ path === currentPath ? 'active' : '' }
                     onClick={() => setVisibleState(false)}
                 >
-                    { SCENE_NAMES[sceneName] ?? sceneName }
+                    { name }
                 </Link>
             </li>
         );

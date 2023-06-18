@@ -11,4 +11,45 @@
         width: 100%;
         height: 100%;
     }
+
+    canvas,
+    .sceneContainerAdditional {
+        opacity: 1;
+        transition: opacity .5s .3s ease;
+    }
+
+    &.hidden {
+        .sceneContainerAdditional,
+        canvas {
+            opacity: 0;
+        }
+
+        .sceneContainerLoading {
+            opacity: 1;
+        }
+    }
+
+
+    .sceneContainerLoading {
+        opacity: 0;
+        transition: opacity .5s .3s ease;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .sceneContainerAdditional {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        pointer-events: none;
+
+        > * {
+            pointer-events: all;
+        }
+    }
 }

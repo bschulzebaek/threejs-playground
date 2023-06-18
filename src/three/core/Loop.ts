@@ -41,10 +41,10 @@ export default class Loop {
             return;
         }
 
+        this.innerLoop(this.getDelta(time, lastTime))
+
         // @ts-ignore
         globalThis.__loop = requestAnimationFrame((newTime) => this.loop(newTime, time));
-
-        this.innerLoop(this.getDelta(time, lastTime));
     }
 
     private innerLoop = (delta: number) => {

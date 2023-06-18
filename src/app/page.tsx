@@ -1,12 +1,8 @@
-import styles from '../styles/pages/index.module.scss';
-import SceneContainer from '@/components/SceneContainer';
-import PageMenu from '@/components/PageMenu';
+import LowPolyBirdsClient from '@/app/low-poly-birds/LowPolyBirdsClient';
 
-export default function Home() {
+export default function LandingPage() {
+
     return (
-        <main className={styles.pageIndex}>
-            <PageMenu />
-            <SceneContainer />
-        </main>
+        <LowPolyBirdsClient />
     )
 }

@@ -1,0 +1,21 @@
+button {
+    background: #f0f0f0;
+    border: none;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border-radius: 1px;
+    box-shadow: 1px 1px 3px rgb(0 0 0 / 30%);
+    transition: box-shadow .3s ease;
+    display: block;
+    margin: 0;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+
+    &:hover {
+        box-shadow: 2px 2px 8px rgb(0 0 0 / 50%);
+    }
+}
