@@ -10,7 +10,7 @@ const SCENES: { [pathname: string]: string } = {
     '/': 'Low Poly Birds',
     '/car-showroom': 'Car Showroom',
     '/polar-station': 'Polar Station',
-    '/fantasy': 'Fantasy',
+    '/fantasy': 'Annotations',
 };
 
 

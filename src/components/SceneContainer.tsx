@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '../styles/components/scene-container.module.scss';
-import { useRef, useEffect, MutableRefObject, useState, Component, ReactNode } from 'react';
+import { useRef, useEffect, MutableRefObject, useState, ReactNode } from 'react';
 import initScene from '@/three/core/init-scene';
 import SceneDescriptor from '@/three/core/SceneDescriptor';
 import { useRouter } from 'next/navigation';

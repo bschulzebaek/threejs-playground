@@ -86,7 +86,7 @@ export default class FantasyDescriptor implements SceneDescriptor {
             renderContext,
             context,
             '3',
-            null,
+            document.querySelector('#annotation-3') as HTMLElement,
             new THREE.Vector3(-0.5, 18.8, -25),
             new THREE.Vector3(-21, 12, -8),
         );
@@ -96,8 +96,7 @@ export default class FantasyDescriptor implements SceneDescriptor {
         annotation2.setPosition(6, 4.5, 23.5);
         annotation3.setPosition(-5.3, 11, -17);
 
-        context.addDynamicObject(annotation1, annotation2);
-        context.addStaticObject(annotation3);
+        context.addDynamicObject(annotation1, annotation2, annotation3);
         context.addClickableObject(annotation1, annotation2, annotation3);
 
         return context;
