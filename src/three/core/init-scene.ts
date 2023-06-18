@@ -5,6 +5,7 @@ import SceneDescriptor from '@/three/core/SceneDescriptor';
 import setResizeListener from '@/three/utility/resize-listener';
 import setPageVisibilityListener from '@/three/utility/page-visibility-listener';
 import SceneInitializedEvent from '@/three/events/SceneInitializedEvent';
+import setObjectClickListener from '@/three/utility/detect-object-click';
 
 async function _initScene(canvas: HTMLCanvasElement, descriptor: typeof SceneDescriptor): Promise<Loop> {
     const renderContext = new RenderContext(canvas, descriptor);
@@ -14,6 +15,7 @@ async function _initScene(canvas: HTMLCanvasElement, descriptor: typeof SceneDes
     const loop = new Loop(sceneContext, renderContext.getCamera(), renderContext.getRenderer());
     renderContext.setLoop(loop);
 
+    setObjectClickListener(renderContext, sceneContext);
     setResizeListener(renderContext);
     setPageVisibilityListener(renderContext);
 

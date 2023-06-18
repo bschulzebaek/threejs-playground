@@ -4,6 +4,7 @@ import RenderContext from '@/three/core/RenderContext';
 import SceneContext from '@/three/core/SceneContext';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Annotation from '@/three/objects/Annotation';
 
 export default class FantasyDescriptor implements SceneDescriptor {
     static getRenderer(canvas: HTMLCanvasElement): THREE.WebGLRenderer {
@@ -25,8 +26,8 @@ export default class FantasyDescriptor implements SceneDescriptor {
             canvas.clientWidth / canvas.clientHeight,
             1,
         );
-        camera.position.set(5.7, 16, 57);
-        camera.rotation.set(-0.27, 0.15, 0.04);
+        camera.position.set(-49, 17, 56);
+        camera.lookAt(new THREE.Vector3(-21, 12, -8));
         return camera;
     }
 
@@ -40,9 +41,9 @@ export default class FantasyDescriptor implements SceneDescriptor {
         controls.screenSpacePanning = false;
         controls.minDistance = 0;
         controls.maxPolarAngle = Math.PI / 2;
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = -0.2;
+        controls.autoRotate = false;
         context.addDynamicObject(controls);
+        context.setControls(controls);
 
         const loader = new GLTFLoader().setPath('/assets/fantasy/');
         const gltf = await loader.loadAsync('scene.glb');
@@ -66,6 +67,46 @@ export default class FantasyDescriptor implements SceneDescriptor {
             dirLight,
         );
 
+        const annotation1 = new Annotation(
+            renderContext,
+            context,
+            '1',
+            document.querySelector('#annotation-1') as HTMLElement,
+            new THREE.Vector3(-49, 17, 56),
+            new THREE.Vector3(-21, 12, -8),
+        );
+        const annotation2 = new Annotation(
+            renderContext,
+            context,
+            '2',
+            document.querySelector('#annotation-2') as HTMLElement,
+            new THREE.Vector3(21, 9.5, 30),
+        );
+        const annotation3 = new Annotation(
+            renderContext,
+            context,
+            '3',
+            null,
+            new THREE.Vector3(-0.5, 18.8, -25),
+            new THREE.Vector3(-21, 12, -8),
+        );
+
+        annotation1.setPosition(-37, 1, 29);
+        annotation1.setActive();
+        annotation2.setPosition(6, 4.5, 23.5);
+        annotation3.setPosition(-5.3, 11, -17);
+
+        context.addDynamicObject(annotation1, annotation2);
+        context.addStaticObject(annotation3);
+        context.addClickableObject(annotation1, annotation2, annotation3);
+
         return context;
     }
+}
+
+function createAnnotation(renderContext: RenderContext, sceneContext: SceneContext, text: string) {
+
+
+
+
 }

@@ -1,8 +1,5 @@
-import LowPolyBirdsClient from '@/app/low-poly-birds/LowPolyBirdsClient';
+import Page from './low-poly-birds/page';
 
 export default function LandingPage() {
-
-    return (
-        <LowPolyBirdsClient />
-    )
+    return <Page />
 }

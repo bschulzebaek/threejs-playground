@@ -11,6 +11,6 @@ export default function setResizeListener(renderContext: RenderContext) {
 
         renderContext.getRenderer().setSize(canvas.clientWidth, canvas.clientHeight);
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
-        camera.updateMatrix();
+        camera.updateProjectionMatrix();
     });
 }

@@ -1,9 +1,19 @@
+import SceneContext from '@/three/core/SceneContext';
+
 /**
- * Necessary workaround to prevent broken memory references
+ * Used to allow PageVisibility API to pause/resume the rendering loop.
+ *
+ * Additionally, it's a necessary workaround to prevent broken memory references
  * caused by the NextJS "Fast Refresh" re-creating the canvas rendering context,
- * while animations are still running.
+ * while scenes are still running.
  */
 export default function flushAnimations() {
     // @ts-ignore
-    cancelAnimationFrame(globalThis.__loop);
+    const context = globalThis.__sceneContext as SceneContext;
+
+    if (!context) {
+        return;
+    }
+
+    cancelAnimationFrame(context.getCurrentLoop());
 }

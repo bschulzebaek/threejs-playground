@@ -1,5 +1,7 @@
 import SceneContext from '@/three/core/SceneContext';
 import { Camera, Scene, WebGLRenderer } from 'three';
+import flushAnimations from '@/three/utility/flush-animations';
+import * as TWEEN from '@tweenjs/tween.js' ;
 
 export default class Loop {
     private paused = true;
@@ -29,6 +31,8 @@ export default class Loop {
             return;
         }
 
+        flushAnimations();
+
         this.paused = true;
     }
 
@@ -42,9 +46,7 @@ export default class Loop {
         }
 
         this.innerLoop(this.getDelta(time, lastTime))
-
-        // @ts-ignore
-        globalThis.__loop = requestAnimationFrame((newTime) => this.loop(newTime, time));
+        this.sceneContext.setCurrentLoop(requestAnimationFrame((newTime) => this.loop(newTime, time)));
     }
 
     private innerLoop = (delta: number) => {
@@ -52,6 +54,7 @@ export default class Loop {
             object.update(delta);
         });
 
+        TWEEN.update();
         this.renderer.render(this.scene, this.camera);
     };
 

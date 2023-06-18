@@ -25,7 +25,7 @@ export default class CarShowroomDescriptor implements SceneDescriptor {
             canvas.clientWidth / canvas.clientHeight,
             0.1,
         );
-        camera.position.set(-2.4, 0.6, -2);
+        camera.position.set(-2.4, 0.8, -2);
         return camera;
     }
 
@@ -57,32 +57,11 @@ export default class CarShowroomDescriptor implements SceneDescriptor {
         scene.background = texture;
         scene.environment = texture;
         scene.backgroundBlurriness = 0.5;
-
-        const light1 = new THREE.PointLight(0x404040 , 5);
-        light1.castShadow = true;
-        light1.position.set(0, 5, 0);
-
-        const light2 = new THREE.PointLight(0x404040 , 5);
-        light2.castShadow = true;
-        light2.position.set(5, 5, -5);
-
-        const light3 = new THREE.PointLight(0x404040 , 5);
-        light3.castShadow = true;
-        light3.position.set(-5, 5, -5);
-
-        const light4 = new THREE.PointLight(0x404040 , 5);
-        light4.castShadow = true;
-        light4.position.set(5, 5, 5);
-
-        const light5 = new THREE.PointLight(0x404040 , 5);
-        light5.castShadow = true;
-        light5.position.set(-5, 5, 5);
-
-        gltf.scene.position.y -= 0.25;
+        scene.backgroundIntensity = 0.5;
 
         scene.add(
             gltf.scene,
-            light1, light2, light3, light4, light5,
+            new THREE.DirectionalLight(0x404040 , 3),
         );
 
         return context;
