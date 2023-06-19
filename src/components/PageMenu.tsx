@@ -58,7 +58,6 @@ export default function PageMenu() {
                 onClick={() => setVisibleState(!visible)}
             >
                 <FontAwesomeIcon icon={visible ? faTimes : faBars} />
-                { visible ? '(ESC)' : null }
             </div>
 
             <div className={classNames.join(' ')}>
